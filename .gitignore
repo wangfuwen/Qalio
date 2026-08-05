@@ -1,0 +1,4 @@
+.env
+evaluation/results/
+data/review_feedback.jsonl
+__pycache__/

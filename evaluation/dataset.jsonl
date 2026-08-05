@@ -1,0 +1,140 @@
+{"id": "Q001", "split": "dev", "dialogue": "用户：咨询订单 10000 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q002", "split": "dev", "dialogue": "用户：咨询订单 10001 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q003", "split": "dev", "dialogue": "用户：咨询订单 10002 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q004", "split": "dev", "dialogue": "用户：咨询订单 10003 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q005", "split": "dev", "dialogue": "用户：咨询订单 10004 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q006", "split": "dev", "dialogue": "用户：咨询订单 10005 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q007", "split": "dev", "dialogue": "用户：咨询订单 10006 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q008", "split": "dev", "dialogue": "用户：咨询订单 10007 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q009", "split": "dev", "dialogue": "用户：咨询订单 10008 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q010", "split": "dev", "dialogue": "用户：咨询订单 10009 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q011", "split": "dev", "dialogue": "用户：咨询订单 10010 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q012", "split": "dev", "dialogue": "用户：咨询订单 10011 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q013", "split": "dev", "dialogue": "用户：咨询订单 10012 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q014", "split": "dev", "dialogue": "用户：咨询订单 10013 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q015", "split": "dev", "dialogue": "用户：咨询订单 10014 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q016", "split": "dev", "dialogue": "用户：咨询订单 10015 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q017", "split": "dev", "dialogue": "用户：咨询订单 10016 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q018", "split": "dev", "dialogue": "用户：咨询订单 10017 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q019", "split": "dev", "dialogue": "用户：咨询订单 10018 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q020", "split": "dev", "dialogue": "用户：咨询订单 10019 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q021", "split": "dev", "dialogue": "用户：咨询订单 10020 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q022", "split": "dev", "dialogue": "用户：咨询订单 10021 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q023", "split": "dev", "dialogue": "用户：咨询订单 10022 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q024", "split": "dev", "dialogue": "用户：咨询订单 10023 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q025", "split": "dev", "dialogue": "用户：咨询订单 10024 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q026", "split": "dev", "dialogue": "用户：咨询订单 10025 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q027", "split": "dev", "dialogue": "用户：咨询订单 10026 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q028", "split": "dev", "dialogue": "用户：咨询订单 10027 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q029", "split": "dev", "dialogue": "用户：咨询订单 10028 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q030", "split": "dev", "dialogue": "用户：咨询订单 10029 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q031", "split": "dev", "dialogue": "用户：咨询订单 10030 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q032", "split": "dev", "dialogue": "用户：咨询订单 10031 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q033", "split": "dev", "dialogue": "用户：咨询订单 10032 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q034", "split": "dev", "dialogue": "用户：咨询订单 10033 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q035", "split": "dev", "dialogue": "用户：咨询订单 10034 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q036", "split": "dev", "dialogue": "用户：咨询订单 10035 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q037", "split": "dev", "dialogue": "用户：咨询订单 10036 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q038", "split": "dev", "dialogue": "用户：咨询订单 10037 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q039", "split": "dev", "dialogue": "用户：咨询订单 10038 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q040", "split": "dev", "dialogue": "用户：咨询订单 10039 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q041", "split": "dev", "dialogue": "用户：咨询订单 10040 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q042", "split": "dev", "dialogue": "用户：咨询订单 10041 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q043", "split": "dev", "dialogue": "用户：咨询订单 10042 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q044", "split": "dev", "dialogue": "用户：咨询订单 10043 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q045", "split": "dev", "dialogue": "用户：咨询订单 10044 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q046", "split": "dev", "dialogue": "用户：咨询订单 10045 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q047", "split": "dev", "dialogue": "用户：咨询订单 10046 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q048", "split": "dev", "dialogue": "用户：咨询订单 10047 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q049", "split": "dev", "dialogue": "用户：咨询订单 10048 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q050", "split": "dev", "dialogue": "用户：咨询订单 10049 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q051", "split": "dev", "dialogue": "用户：咨询订单 10050 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q052", "split": "dev", "dialogue": "用户：咨询订单 10051 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q053", "split": "dev", "dialogue": "用户：咨询订单 10052 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q054", "split": "dev", "dialogue": "用户：咨询订单 10053 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q055", "split": "dev", "dialogue": "用户：咨询订单 10054 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q056", "split": "dev", "dialogue": "用户：咨询订单 10055 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q057", "split": "dev", "dialogue": "用户：咨询订单 10056 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q058", "split": "dev", "dialogue": "用户：咨询订单 10057 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q059", "split": "dev", "dialogue": "用户：咨询订单 10058 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q060", "split": "dev", "dialogue": "用户：咨询订单 10059 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q061", "split": "dev", "dialogue": "用户：咨询订单 10060 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q062", "split": "dev", "dialogue": "用户：咨询订单 10061 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q063", "split": "dev", "dialogue": "用户：咨询订单 10062 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q064", "split": "dev", "dialogue": "用户：咨询订单 10063 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q065", "split": "dev", "dialogue": "用户：咨询订单 10064 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q066", "split": "dev", "dialogue": "用户：咨询订单 10065 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q067", "split": "dev", "dialogue": "用户：咨询订单 10066 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q068", "split": "dev", "dialogue": "用户：咨询订单 10067 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q069", "split": "dev", "dialogue": "用户：咨询订单 10068 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q070", "split": "dev", "dialogue": "用户：咨询订单 10069 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q071", "split": "dev", "dialogue": "用户：咨询订单 10070 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q072", "split": "dev", "dialogue": "用户：咨询订单 10071 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q073", "split": "dev", "dialogue": "用户：咨询订单 10072 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q074", "split": "dev", "dialogue": "用户：咨询订单 10073 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q075", "split": "dev", "dialogue": "用户：咨询订单 10074 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q076", "split": "dev", "dialogue": "用户：咨询订单 10075 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q077", "split": "dev", "dialogue": "用户：咨询订单 10076 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q078", "split": "dev", "dialogue": "用户：咨询订单 10077 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q079", "split": "dev", "dialogue": "用户：咨询订单 10078 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q080", "split": "dev", "dialogue": "用户：咨询订单 10079 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q081", "split": "test", "dialogue": "用户：咨询订单 10080 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q082", "split": "test", "dialogue": "用户：咨询订单 10081 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q083", "split": "test", "dialogue": "用户：咨询订单 10082 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q084", "split": "test", "dialogue": "用户：咨询订单 10083 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q085", "split": "test", "dialogue": "用户：咨询订单 10084 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q086", "split": "test", "dialogue": "用户：咨询订单 10085 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q087", "split": "test", "dialogue": "用户：咨询订单 10086 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q088", "split": "test", "dialogue": "用户：咨询订单 10087 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q089", "split": "test", "dialogue": "用户：咨询订单 10088 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q090", "split": "test", "dialogue": "用户：咨询订单 10089 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q091", "split": "test", "dialogue": "用户：咨询订单 10090 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q092", "split": "test", "dialogue": "用户：咨询订单 10091 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q093", "split": "test", "dialogue": "用户：咨询订单 10092 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q094", "split": "test", "dialogue": "用户：咨询订单 10093 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "Q095", "split": "test", "dialogue": "用户：咨询订单 10094 的处理进度。\n客服：不知道，别问了。", "label": "服务规范缺失", "priority": "P2", "evidence": "别问了"}
+{"id": "Q096", "split": "test", "dialogue": "用户：咨询订单 10095 的处理进度。\n客服：我已为你登记，会在 10 分钟内回复。", "label": "正常会话", "priority": "—", "evidence": ""}
+{"id": "Q097", "split": "test", "dialogue": "用户：咨询订单 10096 的处理进度。\n客服：一定今天到，收不到我马上赔偿。", "label": "越权承诺", "priority": "P0", "evidence": "一定今天到"}
+{"id": "Q098", "split": "test", "dialogue": "用户：咨询订单 10097 的处理进度。\n客服：拆封后不能退款，你自己联系品牌。", "label": "售后退款", "priority": "P1", "evidence": "不能退款"}
+{"id": "Q099", "split": "test", "dialogue": "用户：咨询订单 10098 的处理进度。\n客服：仓库缺货，预计延迟发货。", "label": "履约发货", "priority": "P1", "evidence": "延迟发货"}
+{"id": "Q100", "split": "test", "dialogue": "用户：咨询订单 10099 的处理进度。\n用户：我要向平台介入投诉。", "label": "情绪升级", "priority": "P0", "evidence": "平台介入"}
+{"id": "H001", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：您放心，今晚必定送达，否则我个人给您补偿。", "label": "越权承诺", "priority": "P0", "evidence": "今晚必定送达", "difficulty": "adversarial"}
+{"id": "H002", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：拆过封就不归我们处理了，您没法申请退货。", "label": "售后退款", "priority": "P1", "evidence": "没法申请退货", "difficulty": "adversarial"}
+{"id": "H003", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：这个订单暂时排不上仓，发出时间还说不准。", "label": "履约发货", "priority": "P1", "evidence": "发出时间还说不准", "difficulty": "adversarial"}
+{"id": "H004", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n用户：再不给方案我就把经历发到社交平台。", "label": "情绪升级", "priority": "P0", "evidence": "发到社交平台", "difficulty": "adversarial"}
+{"id": "H005", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：系统显示什么就是什么，我也没办法。", "label": "服务规范缺失", "priority": "P2", "evidence": "我也没办法", "difficulty": "adversarial"}
+{"id": "H006", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：很抱歉让您久等；我不能承诺具体送达时间，但会持续跟进。", "label": "正常会话", "priority": "—", "evidence": "", "difficulty": "adversarial"}
+{"id": "H007", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n用户：我要投诉。\n客服：我理解您的感受，已升级专员在 10 分钟内致电处理。", "label": "正常会话", "priority": "—", "evidence": "", "difficulty": "adversarial"}
+{"id": "H008", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：无论什么情况都可以退，款项今天原路退回。", "label": "越权承诺", "priority": "P0", "evidence": "都可以退", "difficulty": "adversarial"}
+{"id": "H009", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n用户：物流五天没更新。\n客服：包裹可能还在仓库角落，您再等等。", "label": "履约发货", "priority": "P1", "evidence": "还在仓库角落", "difficulty": "adversarial"}
+{"id": "H010", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：这个问题看商品页，别一直催。", "label": "服务规范缺失", "priority": "P2", "evidence": "别一直催", "difficulty": "adversarial"}
+{"id": "H011", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：您放心，今晚必定送达，否则我个人给您补偿。", "label": "越权承诺", "priority": "P0", "evidence": "今晚必定送达", "difficulty": "adversarial"}
+{"id": "H012", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：拆过封就不归我们处理了，您没法申请退货。", "label": "售后退款", "priority": "P1", "evidence": "没法申请退货", "difficulty": "adversarial"}
+{"id": "H013", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：这个订单暂时排不上仓，发出时间还说不准。", "label": "履约发货", "priority": "P1", "evidence": "发出时间还说不准", "difficulty": "adversarial"}
+{"id": "H014", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n用户：再不给方案我就把经历发到社交平台。", "label": "情绪升级", "priority": "P0", "evidence": "发到社交平台", "difficulty": "adversarial"}
+{"id": "H015", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：系统显示什么就是什么，我也没办法。", "label": "服务规范缺失", "priority": "P2", "evidence": "我也没办法", "difficulty": "adversarial"}
+{"id": "H016", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：很抱歉让您久等；我不能承诺具体送达时间，但会持续跟进。", "label": "正常会话", "priority": "—", "evidence": "", "difficulty": "adversarial"}
+{"id": "H017", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n用户：我要投诉。\n客服：我理解您的感受，已升级专员在 10 分钟内致电处理。", "label": "正常会话", "priority": "—", "evidence": "", "difficulty": "adversarial"}
+{"id": "H018", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：无论什么情况都可以退，款项今天原路退回。", "label": "越权承诺", "priority": "P0", "evidence": "都可以退", "difficulty": "adversarial"}
+{"id": "H019", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n用户：物流五天没更新。\n客服：包裹可能还在仓库角落，您再等等。", "label": "履约发货", "priority": "P1", "evidence": "还在仓库角落", "difficulty": "adversarial"}
+{"id": "H020", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：这个问题看商品页，别一直催。", "label": "服务规范缺失", "priority": "P2", "evidence": "别一直催", "difficulty": "adversarial"}
+{"id": "H021", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：您放心，今晚必定送达，否则我个人给您补偿。", "label": "越权承诺", "priority": "P0", "evidence": "今晚必定送达", "difficulty": "adversarial"}
+{"id": "H022", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：拆过封就不归我们处理了，您没法申请退货。", "label": "售后退款", "priority": "P1", "evidence": "没法申请退货", "difficulty": "adversarial"}
+{"id": "H023", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：这个订单暂时排不上仓，发出时间还说不准。", "label": "履约发货", "priority": "P1", "evidence": "发出时间还说不准", "difficulty": "adversarial"}
+{"id": "H024", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n用户：再不给方案我就把经历发到社交平台。", "label": "情绪升级", "priority": "P0", "evidence": "发到社交平台", "difficulty": "adversarial"}
+{"id": "H025", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：系统显示什么就是什么，我也没办法。", "label": "服务规范缺失", "priority": "P2", "evidence": "我也没办法", "difficulty": "adversarial"}
+{"id": "H026", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：很抱歉让您久等；我不能承诺具体送达时间，但会持续跟进。", "label": "正常会话", "priority": "—", "evidence": "", "difficulty": "adversarial"}
+{"id": "H027", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n用户：我要投诉。\n客服：我理解您的感受，已升级专员在 10 分钟内致电处理。", "label": "正常会话", "priority": "—", "evidence": "", "difficulty": "adversarial"}
+{"id": "H028", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：无论什么情况都可以退，款项今天原路退回。", "label": "越权承诺", "priority": "P0", "evidence": "都可以退", "difficulty": "adversarial"}
+{"id": "H029", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n用户：物流五天没更新。\n客服：包裹可能还在仓库角落，您再等等。", "label": "履约发货", "priority": "P1", "evidence": "还在仓库角落", "difficulty": "adversarial"}
+{"id": "H030", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：这个问题看商品页，别一直催。", "label": "服务规范缺失", "priority": "P2", "evidence": "别一直催", "difficulty": "adversarial"}
+{"id": "H031", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：您放心，今晚必定送达，否则我个人给您补偿。", "label": "越权承诺", "priority": "P0", "evidence": "今晚必定送达", "difficulty": "adversarial"}
+{"id": "H032", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：拆过封就不归我们处理了，您没法申请退货。", "label": "售后退款", "priority": "P1", "evidence": "没法申请退货", "difficulty": "adversarial"}
+{"id": "H033", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：这个订单暂时排不上仓，发出时间还说不准。", "label": "履约发货", "priority": "P1", "evidence": "发出时间还说不准", "difficulty": "adversarial"}
+{"id": "H034", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n用户：再不给方案我就把经历发到社交平台。", "label": "情绪升级", "priority": "P0", "evidence": "发到社交平台", "difficulty": "adversarial"}
+{"id": "H035", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：系统显示什么就是什么，我也没办法。", "label": "服务规范缺失", "priority": "P2", "evidence": "我也没办法", "difficulty": "adversarial"}
+{"id": "H036", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：很抱歉让您久等；我不能承诺具体送达时间，但会持续跟进。", "label": "正常会话", "priority": "—", "evidence": "", "difficulty": "adversarial"}
+{"id": "H037", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n用户：我要投诉。\n客服：我理解您的感受，已升级专员在 10 分钟内致电处理。", "label": "正常会话", "priority": "—", "evidence": "", "difficulty": "adversarial"}
+{"id": "H038", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：无论什么情况都可以退，款项今天原路退回。", "label": "越权承诺", "priority": "P0", "evidence": "都可以退", "difficulty": "adversarial"}
+{"id": "H039", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n用户：物流五天没更新。\n客服：包裹可能还在仓库角落，您再等等。", "label": "履约发货", "priority": "P1", "evidence": "还在仓库角落", "difficulty": "adversarial"}
+{"id": "H040", "split": "test", "dialogue": "用户：请帮我处理订单问题。\n客服：这个问题看商品页，别一直催。", "label": "服务规范缺失", "priority": "P2", "evidence": "别一直催", "difficulty": "adversarial"}
