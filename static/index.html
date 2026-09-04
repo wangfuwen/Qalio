@@ -1,1 +1,45 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Qalio · 客服质检</title><link rel="stylesheet" href="/static/style.css"></head><body><aside><div class="brand"><i>Q</i><span>Qalio</span></div><p class="workspace">工作空间</p><nav><a class="active">▦　质检总览</a><a>◷　会话记录</a><a>⌁　问题洞察</a><a>◉　质检规则</a></nav><div class="aside-bottom"><div class="avatar">FW</div><div><b>甫文的工作台</b><small>管理员</small></div></div></aside><main><header><div><p class="crumb">质检中心 / <b>风险总览</b></p><h1>早上好，甫文 <span>✦</span></h1><p class="hint">这是今日客服风险的优先处理清单。</p></div><div class="head-actions"><label class="upload">导入对话 <input id="file" type="file" accept=".csv"></label><button class="ghost">⌄　近 7 天</button></div></header><section id="cards" class="cards"></section><section class="insight"><div class="chart"><div class="section-head"><div><p class="mini">风险趋势</p><h2>本周风险会话</h2></div><span class="up">↗ 12.4%</span></div><div class="bars"><i style="height:38%"><em>一</em></i><i style="height:54%"><em>二</em></i><i style="height:29%"><em>三</em></i><i style="height:78%"><em>四</em></i><i style="height:60%"><em>五</em></i><i style="height:92%"><em>六</em></i><i style="height:68%"><em>日</em></i></div></div><div class="priority"><p class="mini">需要关注</p><h2>Top 整改主题</h2><div id="top" class="top"></div><button class="text-button">查看完整洞察　→</button></div></section><section class="panel"><div class="toolbar"><div><p class="mini">风险队列</p><h2>待处理会话 <span id="count"></span></h2></div><div class="filters"><select id="priority"><option value="">全部等级</option><option>P0</option><option>P1</option><option>P2</option></select><select id="label"><option value="">全部风险类型</option></select></div></div><div id="list" class="list"></div></section></main><template id="item"><article class="item"><div class="row-title"><div class="check"></div><div><strong class="id"></strong><small class="meta"></small></div></div><span class="badge"></span><p class="labels"></p><blockquote></blockquote><span class="confidence"></span><button class="review">查看并复核　→</button></article></template><div id="modal" class="modal"><div class="modal-card"><button id="close">×</button><p class="mini">会话复核</p><h2 id="modal-title"></h2><div id="modal-content"></div><div class="actions"><button data-action="accepted">确认风险</button><button data-action="edited" class="ghost">修改结论</button><button data-action="rejected" class="danger">驳回</button></div></div></div><script src="/static/app.js"></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Qalio · 客诉管理 Copilot</title><link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/"><span class="brand-icon">Q</span> Qalio <small>COPILOT</small></a>
+    <p class="nav-caption">客服管理空间</p>
+    <nav aria-label="主导航">
+      <a href="#overview" data-page="overview"><span>▦</span>主管总览</a>
+      <a href="#conversations" data-page="conversations"><span>☷</span>会话分析</a>
+      <a href="#tickets" data-page="tickets"><span>☑</span>处置工单 <b id="nav-count"></b></a>
+      <a href="#insights" data-page="insights"><span>↗</span>数据复盘</a>
+      <a href="#knowledge" data-page="knowledge"><span>▤</span>企业知识库</a>
+    </nav>
+    <div class="sidebar-note"><span class="dot"></span> 人工确认后执行<p>让每一次客诉都有明确的负责人、处理方案和反馈。</p></div>
+    <div class="profile"><span class="avatar">主</span><div>主管工作台<small>本地演示工作空间</small></div></div>
+  </aside>
+  <main>
+    <div class="topbar"><span>工作空间 <span class="slash">/</span> <b id="breadcrumb">主管总览</b></span><button id="notifications" class="ghost">站内提醒 <span id="unread">0</span></button></div>
+    <header class="page-header"><div><p class="eyebrow">CUSTOMER OPERATIONS</p><h1 id="page-title">把客诉跟进到解决</h1><p id="page-description" class="muted">从发现风险到回访复盘，掌握每一个处理节点。</p></div><div class="header-actions"><a class="button ghost" href="/static/import-template.csv" download>下载导入模板</a><label class="button" id="upload-label">＋ 导入会话<input id="file" type="file" accept=".csv" hidden></label></div></header>
+    <div id="mode" class="mode"></div>
+    <div id="loading" class="empty">正在加载工作台…</div>
+    <section id="overview-view" hidden>
+      <div class="flow"><div><b>01</b> 会话分析</div><span>→</span><div><b>02</b> 分类与分级</div><span>→</span><div><b>03</b> 分派负责人</div><span>→</span><div><b>04</b> 确认与处置</div><span>→</span><div><b>05</b> 反馈复盘</div></div>
+      <div id="cards" class="cards"></div>
+      <div class="two-columns"><section class="panel"><div class="section-heading"><div><p class="eyebrow">PRIORITIES</p><h2>优先关注的客诉</h2></div><a href="#tickets" class="text-link">全部工单 →</a></div><div id="urgent"></div></section><section class="panel"><div class="section-heading"><div><p class="eyebrow">TEAM</p><h2>负责人工作负载</h2></div><span class="muted">未结案工单</span></div><div id="owners"></div><p class="footnote">P0 → 投诉专员 · 退款 → 售后 · 发货 → 履约<br>分派生成站内提醒，可在工单详情中转派。</p></section></div>
+    </section>
+    <section id="queue-view" class="panel" hidden>
+      <div class="section-heading"><div><p class="eyebrow">WORK QUEUE</p><h2 id="queue-title">会话列表</h2></div><span id="count" class="muted"></span></div>
+      <div class="filters"><input id="search" aria-label="搜索会话" placeholder="搜索会话、用户或核心问题"><select id="priority" aria-label="风险等级"><option value="">全部等级</option><option>P0</option><option>P1</option><option>P2</option><option value="—">未命中风险</option></select><select id="status" aria-label="处理状态"><option value="">全部状态</option><option value="pending_review">待主管确认</option><option value="ready">待执行</option><option value="in_progress">处理中</option><option value="resolved">已结案</option><option value="dismissed">已驳回</option></select><select id="label" aria-label="风险分类"><option value="">全部分类</option></select></div>
+      <div class="table-scroll"><table><thead><tr><th>会话 / 用户</th><th>核心问题与分类</th><th>优先级</th><th>负责人</th><th>处理状态</th><th></th></tr></thead><tbody id="list"></tbody></table></div>
+    </section>
+    <section id="insights-view" hidden><div id="insight-cards" class="cards"></div><div class="two-columns"><section class="panel"><h2>风险会话趋势</h2><p class="muted">按原始会话日期统计，已驳回风险不计入。</p><div id="risk-chart"></div></section><section class="panel"><h2>高频问题</h2><p class="muted">同一会话可包含多种标签。</p><div id="label-chart"></div></section><section class="panel"><h2>风险分布</h2><div id="priority-chart"></div></section><section class="panel"><h2>回访反馈趋势</h2><p class="muted">按最新回访日期分组，显示各工单当前反馈。</p><div id="feedback-chart" class="table-scroll"></div></section></div><section class="panel spaced"><h2>下一轮优化建议</h2><div id="improvements"></div><p class="footnote">指标口径：解决率 = 已结案 / 未驳回工单；处理时长 = 建单至结案，包含等待确认时间。暂无数据时显示「—」。</p></section></section>
+    <section id="knowledge-view" hidden><section class="panel"><div class="section-heading"><div><h2>服务规范与处理案例</h2><p class="muted">已发布条目供新会话检索；结案案例先进入草稿，审核后再发布。</p></div><button id="add-knowledge">＋ 新建知识</button></div><div id="knowledge-list" class="knowledge-grid"></div></section></section>
+    <footer>Qalio · 客服主管的客诉处理闭环 <span>内置会话、规范和案例均为模拟数据</span></footer>
+  </main>
+  <dialog id="detail"><div class="dialog-head"><div><p class="eyebrow">CONVERSATION WORKSPACE</p><h2 id="detail-title"></h2></div><button class="close ghost" aria-label="关闭详情">×</button></div><div id="detail-content"></div></dialog>
+  <dialog id="knowledge-dialog"><div class="dialog-head"><h2>新建知识草稿</h2><button class="close ghost" aria-label="关闭">×</button></div><form id="knowledge-form"><label>标题<input name="title" required minlength="2" maxlength="100"></label><div class="form-grid"><label>类型<select name="kind"><option value="policy">服务规范</option><option value="case">处理案例</option></select></label><label>版本<input name="version" value="v1" required maxlength="80"></label></div><label>适用标签<select name="labels" multiple required size="5"></select></label><label>内容<textarea name="content" required minlength="10" maxlength="6000" rows="7"></textarea></label><button type="submit">保存为草稿</button></form></dialog>
+  <dialog id="notification-dialog"><div class="dialog-head"><h2>站内提醒</h2><button class="close ghost" aria-label="关闭">×</button></div><div id="notification-list"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="/static/app.js"></script>
+</body></html>

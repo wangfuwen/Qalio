@@ -2,3 +2,8 @@
 evaluation/results/
 data/review_feedback.jsonl
 __pycache__/
+
+data/*.sqlite3*
+data/*-preview.png
+data/browser-smoke.cjs
+node_modules/
