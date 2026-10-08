@@ -56,14 +56,15 @@ def retrieve(dialogue: str, labels: list[str], knowledge: list[dict]) -> list[di
     return [{**doc, "score": score(doc)} for doc in ranked if score(doc) > 0][:4]
 
 
-def classify(row: dict, knowledge: list[dict] | None = None) -> dict:
+def _classify_legacy(row: dict, knowledge: list[dict] | None = None, *, use_llm: bool | None = None) -> dict:
     dialogue = row.get("dialogue", "").replace("\\n", "\n")
     hits = rule_evidence(dialogue)
     customer_lines = [re.sub(r"^[^:：]+[:：]", "", line) for speaker, line in turns(dialogue) if speaker == "customer"]
     summary = "；".join(customer_lines)[:220] or dialogue[:220]
     mode, warning, llm_suggestion = "rules", "", ""
     sources = retrieve(dialogue, [h["label"] for h in hits], knowledge or [])
-    if os.getenv("QA_ENABLE_LLM", "").lower() in {"1", "true"}:
+    llm_enabled = use_llm if use_llm is not None else os.getenv("QA_ENABLE_LLM", "").lower() in {"1", "true"}
+    if llm_enabled:
         try:
             from openai import OpenAI
             from pydantic import BaseModel, Field
@@ -121,3 +122,54 @@ def classify(row: dict, knowledge: list[dict] | None = None) -> dict:
         "sources": sources, "analysis_mode": mode, "analysis_warning": warning,
         "suggested_owner": owner, "review_status": "pending", "ticket": None,
     }
+
+
+def classify(row: dict, knowledge: list[dict] | None = None, *, local_only: bool = False) -> dict:
+    from . import jev
+    if local_only:
+        return _classify_legacy(row, knowledge, use_llm=False)
+    if not jev.enabled():
+        return _classify_legacy(row, knowledge)
+
+    # This local result is only a recovery path. Successful Jev decisions replace
+    # keyword risk findings instead of unioning them back into semantic results.
+    result = _classify_legacy(row, knowledge, use_llm=False)
+    policies = retrieve(result["dialogue"], list(PRIORITIES),
+                        [d for d in knowledge or [] if d["kind"] == "policy"])
+    try:
+        decision = jev.evaluate(result["dialogue"], policies)
+    except Exception:
+        result.update(analysis_mode="jev_fallback", analysis_review_required=True,
+                      analysis_warning="Jev 未完成有效分析，当前仅为本地规则线索，必须人工复核；未命中不代表正常。")
+        return result
+
+    hits = decision.pop("hits")
+    labels = [hit["label"] for hit in hits]
+    priority = min((hit["priority"] for hit in hits), default="—")
+    sources = retrieve(result["dialogue"], labels, knowledge or [])
+    needs_review = decision["review_required"]
+    warning = "部分风险判断不确定或证据不足，请逐项核查；未形成明确结论的项目不计为已识别风险。" if needs_review else ""
+    steps = ["核对原文、订单状态和适用规范；以下内容为待主管确认的处置草案。"]
+    steps += [doc["content"] for doc in sources if doc["kind"] == "policy"]
+    steps += ["由主管确认后交负责人执行，并记录处理结果与回访反馈。"]
+    result.update(
+        labels=labels or ["未命中风险"], priority=priority, evidence=hits,
+        complaint_labels=[label for label in labels if label not in SERVICE_LABELS],
+        service_labels=[label for label in labels if label in SERVICE_LABELS],
+        sources=sources, analysis_mode="jev+retrieval", analysis_warning=warning,
+        analysis_review_required=needs_review, jev=decision,
+        suggested_owner="投诉专员" if priority == "P0" else "售后负责人" if "售后退款" in labels else "履约负责人" if "履约发货" in labels else "质检主管",
+        suggestion="\n".join(steps) if hits else "请主管核查不确定项目并填写复核说明。" if needs_review else "Jev 未识别出明确风险，仍可人工抽检。",
+    )
+    # Generation is only useful for identified or unresolved risk cases.
+    if (hits or needs_review) and os.getenv("QA_ENABLE_LLM", "").lower() in {"true", "1"}:
+        try:
+            from .generation import draft
+            generated = draft(result["dialogue"], hits, decision["decisions"], sources)
+            result.update(summary=generated.summary, suggestion=generated.suggestion,
+                          sources=[doc for doc in sources if doc["id"] in generated.source_ids],
+                          analysis_mode="jev+llm+retrieval")
+        except Exception:
+            result["analysis_warning"] += " 摘要与建议生成失败或引用校验未通过，已保留 Jev 判断和本地建议，请人工复核。"
+            result["analysis_review_required"] = True
+    return result

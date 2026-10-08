@@ -4,6 +4,9 @@ const E = escapeHTML;
 const states = {pending_review:'待主管确认',ready:'待执行',in_progress:'处理中',resolved:'已结案',dismissed:'已驳回'};
 const feedbackNames = {satisfied:'满意',neutral:'一般',dissatisfied:'不满意',unknown:'未回访'};
 const modes = {rules:'本地规则 + 知识检索',rules_fallback:'模型回退 · 本地规则', 'llm+rules+retrieval':'LLM + 规则 + 知识检索'};
+Object.assign(modes, {'jev+retrieval':'Jev 风险判断 + 知识检索', 'jev+llm+retrieval':'Jev 风险判断 + LLM 建议', jev_fallback:'Jev 未完成 · 本地规则线索'});
+const needsReview=row=>row.review_status==='pending'&&row.analysis_review_required;
+const displayLabels=row=>needsReview(row)&&row.priority==='—'?['待人工判断']:row.labels;
 const pageInfo = {
   overview:['主管总览','把客诉跟进到解决','从发现风险到回访复盘，掌握每一个处理节点。'],
   conversations:['会话分析','先读懂问题，再判断风险','查看核心诉求与原文证据，区分客诉风险和客服违规。'],
@@ -35,7 +38,7 @@ async function api(path, options={}){
 const post=(path,payload)=>api(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload || {})});
 const time=value=>value?new Date(value).toLocaleString('zh-CN',{hour12:false}):'—';
 const badge=row=>'<span class="badge '+(row.priority==='—'?'none':E(row.priority))+'">'+E(row.priority)+'</span>';
-const statusBadge=row=>row.ticket?'<span class="badge status-'+E(row.ticket.status)+'">'+E(states[row.ticket.status])+'</span>':'<span class="badge">'+(row.review_status==='pending'?'可抽检':'已复核')+'</span>';
+const statusBadge=row=>row.ticket?'<span class="badge status-'+E(row.ticket.status)+'">'+E(states[row.ticket.status])+'</span>':'<span class="badge">'+(needsReview(row)?'待人工判断':row.review_status==='pending'?'可抽检':'已复核')+'</span>';
 const options=(values,current='')=>values.map(value=>'<option value="'+E(value)+'"'+(value===current?' selected':'')+'>'+E(value)+'</option>').join('');
 const empty=message=>'<div class="empty">'+E(message)+'</div>';
 function card(title,value,note,cls=''){return '<div class="card '+cls+'"><span>'+E(title)+'</span><b>'+E(value ?? '—')+'</b><small>'+E(note)+'</small></div>';}
@@ -58,23 +61,23 @@ function render(){
   $('#queue-title').textContent=page==='tickets'?'处置工单':'全部会话';
   $('#nav-count').textContent=data.summary.active;
   $('#unread').textContent=data.notifications.filter(n=>!n.read).length;
-  const fallback=data.items.filter(row=>row.analysis_mode==='rules_fallback').length;
-  $('#mode').textContent=(data.llm_enabled?'已启用 LLM 语义分析 · 每条会话标注实际分析来源':'本地模式 · 规则分析 + 关键词知识检索 · LLM 未启用')+(fallback?' · '+fallback+' 条会话已回退规则':'');
+  const fallback=data.items.filter(row=>['rules_fallback','jev_fallback'].includes(row.analysis_mode)).length;
+  $('#mode').textContent=(data.jev_enabled?'新导入：Jev 风险判断'+(data.llm_enabled?' + LLM 生成建议':' + 本地知识建议'):data.llm_enabled?'已启用 LLM 语义分析 · 每条会话标注实际分析来源':'本地模式 · 规则分析 + 关键词知识检索 · LLM 未启用')+(fallback?' · '+fallback+' 条会话已回退规则':'');
   renderOverview(); renderQueue(); renderInsights(); renderKnowledge();
 }
 function renderOverview(){
   const s=data.summary;
   $('#cards').innerHTML=card('已分析会话',s.total,'累计导入并保存的会话')+card('待主管确认',s.pending,'确认方案后进入执行','accent')+card('P0 高优先级',s.p0,'已驳回风险不计入','attention')+card('工单解决率',s.resolution_rate===null?'—':s.resolution_rate+'%',s.resolved+' 已解决 / '+s.ticket_total+' 有效工单');
-  const urgent=data.items.filter(x=>x.ticket&&!['resolved','dismissed'].includes(x.ticket.status)).slice(0,4);
-  $('#urgent').innerHTML=urgent.map(row=>'<button class="urgent-row" data-open="'+E(row.conversation_id)+'">'+badge(row)+'<div><strong>'+E(row.summary)+'</strong><small>'+E(row.conversation_id)+' · '+E(row.ticket.owner)+' · '+E(states[row.ticket.status])+'</small></div><span>↗</span></button>').join('')||empty('暂无待处理工单');
+  const urgent=data.items.filter(x=>needsReview(x)||(x.ticket&&!['resolved','dismissed'].includes(x.ticket.status))).sort((a,b)=>Number(needsReview(b))-Number(needsReview(a))).slice(0,4);
+  $('#urgent').innerHTML=urgent.map(row=>'<button class="urgent-row" data-open="'+E(row.conversation_id)+'">'+badge(row)+'<div><strong>'+E(row.summary)+'</strong><small>'+E(row.conversation_id)+' · '+E(row.ticket?.owner||'质检主管')+' · '+E(row.ticket?states[row.ticket.status]:'待人工判断')+'</small></div><span>↗</span></button>').join('')||empty('暂无待处理工单');
   const max=Math.max(1,...s.owners.map(o=>o.active));
   $('#owners').innerHTML=s.owners.map(owner=>'<div class="owner-row"><span class="avatar">'+E(owner.owner[0])+'</span><div><small>'+E(owner.owner)+'</small><div class="meter"><i style="width:'+owner.active/max*100+'%"></i></div></div><b>'+owner.active+'</b></div>').join('')||empty('暂无负责人负载');
 }
 function renderQueue(){
   const search=$('#search').value.trim().toLowerCase(),priority=$('#priority').value,status=$('#status').value,label=$('#label').value;
-  const rows=data.items.filter(row=>(page!=='tickets'||row.ticket)&&(!priority||row.priority===priority)&&(!status||row.ticket?.status===status)&&(!label||row.labels.includes(label))&&(!search||[row.conversation_id,row.customer,row.agent,row.summary].join(' ').toLowerCase().includes(search)));
+  const rows=data.items.filter(row=>(page!=='tickets'||row.ticket)&&(!priority||row.priority===priority)&&(!status||row.ticket?.status===status||(status==='pending_review'&&needsReview(row)))&&(!label||row.labels.includes(label))&&(!search||[row.conversation_id,row.customer,row.agent,row.summary].join(' ').toLowerCase().includes(search)));
   $('#count').textContent=rows.length+' 条';
-  $('#list').innerHTML=rows.map(row=>'<tr><td><strong>'+E(row.conversation_id)+'</strong><small>'+E(row.customer)+' · '+E(row.agent)+'</small><small>'+E(row.date)+'</small></td><td><p class="row-summary">'+E(row.summary)+'</p>'+row.labels.map(label=>'<span class="tag">'+E(label)+'</span>').join('')+'</td><td>'+badge(row)+'</td><td>'+E(row.ticket?.owner||'—')+'</td><td>'+statusBadge(row)+(row.ticket&&!['resolved','dismissed'].includes(row.ticket.status)&&new Date(row.ticket.due_at)<new Date()?'<small style="color:var(--red)">已逾期</small>':'')+'</td><td><button data-open="'+E(row.conversation_id)+'">查看详情 →</button></td></tr>').join('')||'<tr><td colspan="6">'+empty('没有符合条件的记录')+'</td></tr>';
+  $('#list').innerHTML=rows.map(row=>'<tr><td><strong>'+E(row.conversation_id)+'</strong><small>'+E(row.customer)+' · '+E(row.agent)+'</small><small>'+E(row.date)+'</small></td><td><p class="row-summary">'+E(row.summary)+'</p>'+displayLabels(row).map(label=>'<span class="tag">'+E(label)+'</span>').join('')+'</td><td>'+badge(row)+'</td><td>'+E(row.ticket?.owner||(needsReview(row)?'质检主管':'—'))+'</td><td>'+statusBadge(row)+(row.ticket&&!['resolved','dismissed'].includes(row.ticket.status)&&new Date(row.ticket.due_at)<new Date()?'<small style="color:var(--red)">已逾期</small>':'')+'</td><td><button data-open="'+E(row.conversation_id)+'">查看详情 →</button></td></tr>').join('')||'<tr><td colspan="6">'+empty('没有符合条件的记录')+'</td></tr>';
 }
 function bars(rows){
   const max=Math.max(1,...rows.map(row=>row.count));
@@ -96,13 +99,18 @@ function renderKnowledge(){
 function feedbackSelect(value='unknown'){
   return '<select id="feedback">'+Object.entries(feedbackNames).map(([key,name])=>'<option value="'+key+'"'+(key===value?' selected':'')+'>'+name+'</option>').join('')+'</select>';
 }
+function jevDetails(row){
+  if(!row.jev)return '';
+  const names={present:'识别到风险',absent:'未识别到',uncertain:'待人工判断'};
+  return '<details class="source"><summary>查看 AI 判断明细</summary><p class="muted">风险概率是模型对该问题回答“是”的概率，尚未用本项目真实数据校准，不代表识别准确率。证据置信度用于判断原文定位是否明确。</p>'+row.jev.decisions.map(d=>'<p><b>'+E(d.label)+'</b> · '+E(names[d.verdict])+'<br>风险概率 '+E(d.probability.toFixed(2))+' · 证据置信度 '+E(d.evidence_confidence.toFixed(2))+' · 原文 '+E(d.evidence_id)+'</p>').join('')+'</details>';
+}
 function showDetail(id){
   const row=data.items.find(item=>item.conversation_id===id);
   if(!row){toast('会话不存在',true);return;}
   selected=id;
   const ticket=row.ticket,pending=row.review_status==='pending',active=ticket&&!['resolved','dismissed'].includes(ticket.status);
   $('#detail-title').textContent=row.conversation_id+' · '+row.customer;
-  const evidence=row.evidence.map(hit=>'<div class="evidence"><b>'+E(hit.label)+' · '+(hit.scope==='service'?'客服违规线索':'客诉风险信号')+'</b><br>'+E(hit.evidence)+'</div>').join('')||empty('暂无明确风险证据，可人工抽检');
+  const evidence=(row.evidence.map(hit=>'<div class="evidence"><b>'+E(hit.label)+' · '+(hit.scope==='service'?'客服违规线索':'客诉风险信号')+'</b><br>'+E(hit.evidence)+'</div>').join('')||empty(needsReview(row)?'证据不足，需要人工核查':'暂无明确风险证据，可人工抽检'))+jevDetails(row);
   const sourceHTML=row.sources.map(doc=>'<details class="source"><summary>'+E(doc.id)+' · '+E(doc.title)+' · '+E(doc.version)+'</summary><p>'+E(doc.content)+'</p></details>').join('')||'<p class="muted">未检索到匹配知识，请主管补充依据。</p>';
   let controls='';
   if(pending){

@@ -15,17 +15,26 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from copilot.analysis import OWNERS, PRIORITIES, SERVICE_LABELS, classify
+from copilot.jev import enabled as jev_enabled
+from copilot.access import AccessGate, validate_access_config
 from copilot.store import ROOT, all_records, dashboard, database, event, get, initialize, notify, now, prepare, save
 
 
 @asynccontextmanager
 async def lifespan(app):
+    validate_access_config()
     await run_in_threadpool(initialize)
     yield
 
 
 app = FastAPI(title="Qalio · 客诉管理 Copilot", lifespan=lifespan)
+app.add_middleware(AccessGate)
 app.mount("/static", StaticFiles(directory=ROOT / "static"), name="static")
+
+
+@app.get("/healthz", include_in_schema=False)
+def health():
+    return {"status": "ok"}
 
 
 class Input(BaseModel):
@@ -100,7 +109,7 @@ def conversations():
         rows = all_records(conn, "conversations")
         notifications = all_records(conn, "notifications")
     rows.sort(key=lambda row: (row["priority"] == "—", row["priority"], row["conversation_id"]))
-    return {"summary": dashboard(rows), "items": rows, "owners": OWNERS, "labels": list(PRIORITIES), "notifications": notifications, "llm_enabled": os.getenv("QA_ENABLE_LLM", "").lower() in {"true", "1"}}
+    return {"summary": dashboard(rows), "items": rows, "owners": OWNERS, "labels": list(PRIORITIES), "notifications": notifications, "jev_enabled": jev_enabled(), "llm_enabled": os.getenv("QA_ENABLE_LLM", "").lower() in {"true", "1"}}
 
 
 @app.post("/api/upload")
@@ -157,6 +166,8 @@ def review(conversation_id: str, payload: Review):
             raise HTTPException(409, "此会话已完成复核")
         if payload.status in {"rejected", "edited"} and not payload.note:
             raise HTTPException(422, "修改或驳回时请填写原因")
+        if item.get("analysis_review_required") and not payload.note:
+            raise HTTPException(422, "分析不确定或已降级，请填写人工核查依据后提交")
         if payload.status == "edited":
             if not payload.labels or not payload.priority:
                 raise HTTPException(422, "修改结论时必须提供风险标签和优先级")

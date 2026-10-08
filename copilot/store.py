@@ -46,7 +46,7 @@ def initialize():
             save(conn, "knowledge", doc["id"], doc)
         with (ROOT / "data" / "sample_conversations.csv").open(encoding="utf-8-sig", newline="") as handle:
             for row in csv.DictReader(handle):
-                item = classify(row, knowledge)
+                item = classify(row, knowledge, local_only=True)
                 prepare(conn, item)
                 save(conn, "conversations", item["conversation_id"], item)
         conn.execute("INSERT INTO settings VALUES ('initialized','1')")
@@ -114,7 +114,7 @@ def dashboard(rows: list[dict]) -> dict:
         feedback_trend[day][ticket["feedback"] or "unknown"] += 1
     return {
         "total": len(rows), "flagged": len(flagged), "p0": priorities["P0"],
-        "pending": sum(t["status"] == "pending_review" for t in tickets),
+        "pending": sum(row["review_status"] == "pending" and (bool(row.get("ticket")) or row.get("analysis_review_required", False)) for row in rows),
         "active": len(active), "resolved": len(resolved), "ticket_total": len(eligible),
         "resolution_rate": round(len(resolved) / len(eligible) * 100, 1) if eligible else None,
         "avg_handling_hours": round(sum(durations) / len(durations), 2) if durations else None,

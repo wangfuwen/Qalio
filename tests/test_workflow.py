@@ -18,7 +18,7 @@ from copilot.store import ROOT
 class WorkflowTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.env = patch.dict(os.environ, {"QA_DB_PATH": str(Path(self.temp.name) / "test.sqlite3"), "QA_ENABLE_LLM": "false"})
+        self.env = patch.dict(os.environ, {"QA_DB_PATH": str(Path(self.temp.name) / "test.sqlite3"), "QA_ENABLE_LLM": "false", "QA_ENABLE_JEV": "false"})
         self.env.start()
         self.client = TestClient(app)
         self.client.__enter__()
@@ -158,7 +158,7 @@ class WorkflowTests(unittest.TestCase):
 
 class AnalysisTests(unittest.TestCase):
     def setUp(self):
-        self.env = patch.dict(os.environ, {"QA_ENABLE_LLM": "false"})
+        self.env = patch.dict(os.environ, {"QA_ENABLE_LLM": "false", "QA_ENABLE_JEV": "false"})
         self.env.start()
         self.docs = json.loads((ROOT / "data" / "knowledge.json").read_text(encoding="utf-8"))
 

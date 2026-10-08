@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: qalio
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements-jev.txt
+    startCommand: python -m uvicorn app:app --host 0.0.0.0 --port $PORT --workers 1 --proxy-headers
+    healthCheckPath: /healthz
+    autoDeployTrigger: off
+    disk:
+      name: qalio-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.12
+      - key: QA_DEPLOYMENT
+        value: public
+      - key: QA_DB_PATH
+        value: /var/data/copilot.sqlite3
+      - key: QA_ACCESS_USER
+        value: admin
+      - key: QA_ACCESS_PASSWORD
+        generateValue: true
+      - key: QA_ENABLE_JEV
+        value: true
+      - key: TYPESAFE_API_KEY
+        sync: false
+      - key: QA_JEV_MODEL
+        value: jev-latest
+      - key: QA_ENABLE_LLM
+        value: false

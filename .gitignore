@@ -7,3 +7,4 @@ data/*.sqlite3*
 data/*-preview.png
 data/browser-smoke.cjs
 node_modules/
+.venv/
